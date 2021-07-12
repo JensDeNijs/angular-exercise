@@ -1,0 +1,22 @@
+{{ friend | json }}
+<form #formName="ngForm">
+  <label for="fname">First name:</label><br>
+  <input #fname="ngModel" required type="text" id="fname" name="fname" [(ngModel)]="friend.fname" [class.error]="fname.invalid && fname.touched"
+         placeholder=""><br>
+  <label for="lname">Last name:</label><br>
+  <input #lname="ngModel" required type="text" id="lname" name="lname" [(ngModel)]="friend.lname" [class.error]="lname.invalid && lname.touched"
+         placeholder=""><br>
+  <label for="email">E-mail:</label><br>
+  <input #email="ngModel" required type="text" id="email" name="email" [(ngModel)]="friend.email"  [class.error]="email.invalid && email.touched"
+         placeholder=""><br>
+  <label for="phone">Phone Number:</label><br>
+  <input #phone="ngModel" required minlength="3" type="text" id="phone" name="phone" [(ngModel)]="friend.phone"
+         [class.error]="phone.invalid && phone.touched" placeholder=""><br>
+  <label for="lang">Favorite Language:</label><br>
+  <select id="lang" name="lang">
+    <option *ngFor="let item of data" value="{{item}}">{{item}}</option>
+  </select><br><br>
+
+  <button id="submit">Submit</button>
+
+</form>
