@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Friend} from "../friend";
-
+import {AddFriendService} from "../add-friend.service";
 
 @Component({
   selector: 'app-friend-form',
@@ -10,14 +10,20 @@ import {Friend} from "../friend";
 
 export class FriendFormComponent implements OnInit {
 
-  constructor() { }
+  public friend = new Friend("", "", "", "");
+  private addFriendsService: AddFriendService;
 
-  public friend = new Friend("","","", "");
+  constructor(add: AddFriendService) {
+    this.addFriendsService = add
+  }
 
   ngOnInit(): void {
   }
-  data = ["JavaScript","PHP","CSS","HTML"]
-  submitFunc(){
+
+  data = ["JavaScript", "PHP", "CSS", "HTML"]
+
+  submitFunc() {
     console.log(this.friend);
+    this.addFriendsService.addFriend(this.friend)
   }
 }
