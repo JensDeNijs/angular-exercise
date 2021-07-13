@@ -17,5 +17,7 @@ export class FriendFormComponent implements OnInit {
   ngOnInit(): void {
   }
   data = ["JavaScript","PHP","CSS","HTML"]
-
+  submitFunc(){
+    console.log(this.friend);
+  }
 }
