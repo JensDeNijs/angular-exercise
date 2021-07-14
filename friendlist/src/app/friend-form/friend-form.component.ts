@@ -10,20 +10,35 @@ import {AddFriendService} from "../add-friend.service";
 
 export class FriendFormComponent implements OnInit {
 
-  public friend = new Friend("", "", "", "");
-  private addFriendsService: AddFriendService;
+  public friend = new Friend("", "", "", "", "");
+  public addFriendsService: AddFriendService;
+  public data = ["JavaScript", "PHP", "CSS", "HTML"]
+  public allFriends:any;
 
   constructor(add: AddFriendService) {
     this.addFriendsService = add
   }
 
-  ngOnInit(): void {
+  ngOnInit(): any {
+    this.asyncFriends(this.addFriendsService.url)
   }
 
-  data = ["JavaScript", "PHP", "CSS", "HTML"]
-
   submitFunc() {
-    console.log(this.friend);
     this.addFriendsService.addFriend(this.friend)
+      .subscribe(data => console.log('It worked', data),
+        error => console.log('It did not worked', error))
+    this.asyncFriends(this.addFriendsService.url);
+
+  }
+
+  public async asyncFriends(url: string): Promise<any> {
+    await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }}).then(response => {
+      return response.json()
+    }).then(data => (this.allFriends = data));
+
   }
 }

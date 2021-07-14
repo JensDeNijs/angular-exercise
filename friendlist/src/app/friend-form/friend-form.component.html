@@ -13,10 +13,14 @@
   <input #phone="ngModel" required pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" minlength="3" type="text" id="phone" name="phone" [(ngModel)]="friend.phone"
          [class.error]="phone.invalid && phone.touched" placeholder=""><br>
   <label for="lang">Favorite Language:</label><br>
-  <select id="lang" name="lang">
+  <select #language="ngModel" id="lang" name="lang" [(ngModel)]="friend.language">
     <option *ngFor="let item of data" value="{{item}}">{{item}}</option>
   </select><br><br>
 
   <button id="submit" [disabled]="formName.form.invalid" >Submit</button>
 
 </form>
+<div *ngFor="let friend of allFriends">
+    <h4>{{friend.fname}} {{friend.lname}}</h4>
+    <p>{{friend.email}}<br>{{friend.phone}}<br>{{friend.language}}</p>
+</div>

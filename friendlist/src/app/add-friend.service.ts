@@ -8,7 +8,7 @@ import {Friend} from "./friend";
 })
 export class AddFriendService {
 private http:HttpClient;
-private url:string = ""
+ url:string = "http://localhost:6969/allFriends"
 
   constructor(http:HttpClient) {
     this.http = http;
@@ -18,4 +18,5 @@ private url:string = ""
     return this.http.post(this.url, a)
 
   }
+
 }
